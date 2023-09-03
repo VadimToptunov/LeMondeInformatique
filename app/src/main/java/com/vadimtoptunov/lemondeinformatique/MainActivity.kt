@@ -24,7 +24,7 @@ import com.vadimtoptunov.lemondeinformatique.ui.theme.LeMondeInformatiqueTheme
 
 class MainActivity : ComponentActivity() {
     var url: String = "https://www.lemondeinformatique.fr/actualites/toute-l-actualite.html"
-    var linksList = listOf(
+    private val linksList = listOf(
         "/BIG DATA",
         "/BUSINESS",
         "/CLOUD",
@@ -98,7 +98,7 @@ fun LinkCard(link: String) {
 @Composable
 fun DefaultPreview() {
     LeMondeInformatiqueTheme {
-        var linksList = listOf(
+        val linksList = listOf(
             "/BIG DATA",
             "/BUSINESS",
             "/CLOUD",
