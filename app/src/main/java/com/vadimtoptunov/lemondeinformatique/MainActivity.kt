@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,30 +19,12 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.vadimtoptunov.lemondeinformatique.ui.theme.AppMenuTextContent
 import com.vadimtoptunov.lemondeinformatique.ui.theme.LeMondeInformatiqueTheme
+import com.vadimtoptunov.lemondeinformatique.ui.theme.MenuItemLinks
 
 class MainActivity : ComponentActivity() {
     var url: String = "https://www.lemondeinformatique.fr/actualites/toute-l-actualite.html"
-    private val linksList = listOf(
-        "/BIG DATA",
-        "/BUSINESS",
-        "/CLOUD",
-        "/DATACENTER",
-        "/EMPLOI",
-        "/HARDWARE",
-        "/INTERNET",
-        "/IOT",
-        "/LOGICIEL",
-        "/MOBILITÉ",
-        "/OS",
-        "/PME",
-        "/RÉSEAU",
-        "/SÉCURITÉ",
-        "/STOCKAGE",
-        "/TRANSFORM. NUMÉRIQUE",
-        "/VIRTUALISATION",
-        "/VOITURE CONNECTÉE"
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +36,7 @@ class MainActivity : ComponentActivity() {
                         .background(Color.Blue)
                 ) {
                     Card {
-                        MainLazyList(linksList)
+                        MainLazyList(AppMenuTextContent())
                     }
                 }
             }
@@ -68,7 +49,7 @@ class MainActivity : ComponentActivity() {
 fun MainLazyList(linksList: List<String>) {
     LazyColumn {
         Modifier.fillMaxWidth()
-        items(linksList) { link ->
+        items(linksList, MenuItemLinks() = {it.id}) { link ->
             LinkCard(link)
         }
     }
@@ -98,26 +79,6 @@ fun LinkCard(link: String) {
 @Composable
 fun DefaultPreview() {
     LeMondeInformatiqueTheme {
-        val linksList = listOf(
-            "/BIG DATA",
-            "/BUSINESS",
-            "/CLOUD",
-            "/DATACENTER",
-            "/EMPLOI",
-            "/HARDWARE",
-            "/INTERNET",
-            "/IOT",
-            "/LOGICIEL",
-            "/MOBILITÉ",
-            "/OS",
-            "/PME",
-            "/RÉSEAU",
-            "/SÉCURITÉ",
-            "/STOCKAGE",
-            "/TRANSFORM. NUMÉRIQUE",
-            "/VIRTUALISATION",
-            "/VOITURE CONNECTÉE"
-        )
-        MainLazyList(linksList)
+        MainLazyList(AppMenuTextContent())
     }
 }
